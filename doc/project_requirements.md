@@ -2,11 +2,14 @@
 
 ## Basic 8-bit Full Adder
 1. Design an 8-bit full adder using only a one-bit full adder
-2. Implement the design in Verilog
+2. Implement the design in Verilog:
    
    a. Call the new module – dut_8bit_addr
+   
    b. Create a test bench (a module call dut_test_bench)
+   
    c. Instantiate the dut in the test bench
+   
 4. The data coming into the design (value_a, value_b, data_val) should be sampled first (using the clk and reset)
 5. The data coming out of the design should also be sampled (sum_result, sum_carry, data_ready)
 
