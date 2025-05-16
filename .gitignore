@@ -1,0 +1,39 @@
+# Vivado generated files
+*.jou
+*.log
+*.str
+*.xpr
+*.pb
+*.dcp
+*.xml
+*.rst
+*.sh
+*.bat
+*.tcl
+*.txt
+
+# Simulation files
+*.wdb
+*.wcfg
+*.vcd
+*.sim
+xsim.dir/
+
+# Generated directories
+.Xil/
+work/
+xsim.dir/
+.hbs/
+.cache/
+.runs/
+.srcs/
+*_synth_*
+*_impl_*
+iseconfig/
+incremental_db/
+.metadata/
+.settings/
+
+# System files
+.DS_Store
+Thumbs.db
