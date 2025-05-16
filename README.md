@@ -1,39 +1,71 @@
 # 8-Bit Full Adder with Register Interface
 
-This project implements an 8-bit full adder in Verilog with registered inputs and outputs. It will be expanded to include a register interface for configuration and control.
+This project implements an 8-bit full adder in Verilog with registered inputs and outputs, and an additional register interface for configuration and control.
 
-## Current Implementation
+## Features
 
-The current version includes:
-- 1-bit full adder module (`fa_1bit`)
-- 8-bit full adder module (`dut_8bit_addr`) that uses eight 1-bit full adders
-- Registered inputs (`Value_a`, `Value_b`, `Data_val`)
-- Registered outputs (`Sum_result`, `Sum_carry`, `Data_ready`)
-- Testbench (`dut_test_bench`) for verification
+1. **Core Functionality:**
+   - 8-bit adder built from chained 1-bit full adders
+   - Registered inputs and outputs for proper clock synchronization
+   - Carry propagation through the adder chain
+   - Data ready signal generation
 
-## How to Use
+2. **Register Interface:**
+   - Three 8-bit configuration registers:
+     - Control Register (Address 0x0): Bit 0 enables offset addition
+     - Offset Value Register (Address 0x1): Contains the offset value to add
+     - General Purpose Register (Address 0x2): Available for general use
+   - Simple bus interface with address, data, and control signals
 
-1. Open the project in Vivado
-2. Run the simulation
-3. View the waveform to verify operation
+3. **Offset Addition Feature:**
+   - When enabled via the control register, adds the offset value to results
+   - Properly handles carry bit during offset addition
+   - Can be dynamically enabled/disabled during operation
 
-## Future Enhancements
+## Files Description
 
-The project will be expanded to include:
-1. Three 8-bit registers:
-   - Control Register (0x0): Contains the offset_enable bit
-   - Offset Value Register (0x1): Holds an 8-bit offset value
-   - General Purpose Register (0x2): 8-bit general storage
-
-2. Register Interface with signals:
-   - Des_address (3 bits): Register selection
-   - Des_value (8 bits): Value to write
-   - Des_req_valid (1 bit): Transaction indicator
-   - Des_wr_rd (1 bit): Write/read selection
-   - Des_rd_vaue (8 bits): Read data output
+- `dut_8bit_addr.v`: Contains the main design with the 8-bit adder and register interface
+- `dut_test_bench.v`: Comprehensive testbench to verify all functionality
 
 ## Implementation Details
 
-The adder is built by chaining eight 1-bit full adders together, with the carry out of each adder connected to the carry in of the next adder.
+The adder is built by chaining eight 1-bit full adders together, with the carry out of each adder connected to the carry in of the next adder. All inputs and outputs are registered to ensure proper synchronization with the clock domain.
 
-All inputs and outputs are registered to ensure proper synchronization with the clock domain.
+The register interface provides a simple way to configure the adder's operation. When offset is enabled (by setting bit 0 of the control register), the value in the offset register is added to the basic adder result, allowing for flexible data processing.
+
+## Test Cases
+
+The testbench includes comprehensive verification of all features:
+
+1. Basic addition functionality (5+3=8)
+2. Full-range addition (200+55=255)
+3. Overflow handling (255+1=0 with carry)
+4. Zero addition (0+0=0)
+5. Register write/read operations
+6. Offset addition with carry propagation (255+1+10=10 with carry)
+7. General purpose register functionality
+8. Offset enable/disable verification
+
+## Future Enhancements
+
+Possible future improvements include:
+- Parameterized design for variable bit widths
+- Additional arithmetic operations (subtraction, multiplication)
+- Error detection and handling
+- More advanced bus interface with timing controls
+
+## Usage
+
+To use this design:
+1. Instantiate the `dut_8bit_addr` module in your project
+2. Connect the required inputs and outputs
+3. Use the DES bus interface to configure the registers as needed
+4. Provide input values and sample the results on each clock cycle
+
+## Simulation
+
+The design has been verified through simulation in Vivado. To reproduce:
+1. Create a new project in Vivado
+2. Add both source files
+3. Run the simulation
+4. View the waveform to observe operation
