@@ -23,12 +23,6 @@ module dut_test_bench();
     initial clk = 0;
     always #5 clk = ~clk;   // 10ns Period / 100 Mhz Freq.
     
-    // Optional: Waveform dumping
-   // initial begin
-    //    $dumpfile("adder_test.vcd");
-     //   $dumpvars(0, dut_test_bench);
-    //end
-    
     // Test sequence
     initial begin
         // Initialize signals
