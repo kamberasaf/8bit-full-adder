@@ -23,9 +23,11 @@ In this section, the full adder design will be expanded to include:
       • This register contains 1 bit – offset_enable, in bit 0 of the register (other bits are don't care). When set to 1 – an offset is added to all calculation.
 
    b. Address 0x1 – offset_value:
+   
       • This register holds 8-bit value which is added to all calculations
 
    c. Address 0x2 – general_purpose:
+   
       • This register has 8 bits which are stored on any write, the value isn't used at this stage
 
 
