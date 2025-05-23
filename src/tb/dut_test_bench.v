@@ -37,7 +37,7 @@ module dut_test_bench();
     // Test sequence
     initial begin
         // Initialize signals
-        reset_n = 0; // This will reset
+        reset_n = 0; // Enable reset
         Value_a = 8'b0;
         Value_b = 8'b0;
         Data_val = 0;
@@ -47,7 +47,7 @@ module dut_test_bench();
         Des_wr_rd = 0;
         
         // Reset for one clock cycle
-        #10 reset_n = 1;
+        #10 reset_n = 1; // Disable reset 
         #10; // Wait another cycle after reset
         
         // ------------------ Basic Adder Tests ---------------
